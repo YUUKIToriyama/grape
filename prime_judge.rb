@@ -1,7 +1,8 @@
 #!/usr/bin/ruby
-#メルセンヌ数2^13-1が素数であることを確かめるスクリプト
+#入力された数が素数であることを確かめるスクリプト
+#実行例 $echo 8191 | ./5_scpirt.rb
 
-$val = 8191
+$val = $stdin.read.chomp.to_i
 
 #エラトステネスの篩を実行するメソッド「prime_judgment」を定義。
 def prime_judgment num
