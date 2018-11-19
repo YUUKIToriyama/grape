@@ -22,11 +22,8 @@ else
 	i = 3
 	while (i <= $val.quo(2))
 		prime_judgment(i)
-		i = i + 3
+		i = i + 2
 	end
 end
 
 puts $val.to_s + " is a prime number."
-
-
-
