@@ -1,0 +1,16 @@
+header {
+  text-align: center;
+}
+.main {
+  padding: 20px 100px 20px 100px;
+  font-size: 16px;
+  font-family: 'Noto Sans JP'; 
+}
+.main h2 {
+  background: linear-gradient(transparent 50%, violet 50%);
+}
+footer {
+  text-align: center;
+  font-size: 10px;
+  font-family: 'Lato';
+}
