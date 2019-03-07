@@ -1,11 +1,12 @@
 #!/usr/bin/ruby
 
 teams = ["A","B","C","D","E"]
-teams.reverse!
+opps = ["A","B","C","D","E"]
 
 while teams.length > 1
-	t_1 = teams.pop
-	for i in teams.reverse
-		puts t_1 + " vs " + i
+	tmp = teams.shift
+	opps.shift
+	for i in opps
+		puts tmp + " vs " + i
 	end
 end
