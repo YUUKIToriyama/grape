@@ -1,8 +1,19 @@
 #!/usr/bin/ruby
-#四桁づつに区切るメソッドを作ります
+# 四桁づつに区切るメソッドを作ります
 
-i = 1234567890
+class Integer
+	def num_separate
+		str = self.to_s.reverse.scan(/./)
+		arr = []
+		while str.length > 0
+			tmp = []
+			4.times do
+				tmp.push(str.shift)
+			end
+			arr.push(tmp.join().reverse)
+		end
+		return arr.reverse
+	end
+end
 
-digits = i.to_s.length
-
-puts (digits / 3) * 3
+puts 1234567890.num_separate.join(",")
