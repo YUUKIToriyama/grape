@@ -1,17 +1,19 @@
 #!/usr/bin/ruby
-#再帰的手続きにより階乗を計算します
-def factorial num 
-	if num < 0
-		return 'ERROR 負の数には対応していません'
-	end
-	
-	if num <= 1
-		1
-	else
-		num * factorial(num - 1)
+# 再帰で階乗を計算
+
+# Usage
+# puts 5.factorial => 120
+
+
+class Integer
+	def factorial
+		n = self
+		if n < 0 then return "error"
+		elsif n <= 1 then return 1
+		else n * (n - 1).factorial end
 	end
 end
 
-for i in 1..100
-	puts i.to_s + ": " + factorial(i).to_s
+for i in 1..10
+	puts "#{i}: #{i.factorial}"
 end
