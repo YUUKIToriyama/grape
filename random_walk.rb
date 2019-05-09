@@ -1,38 +1,34 @@
 #!/usr/bin/ruby
+# random walking 問題の近似解を計算します
 
-WIDTH = 500
-HEIGHT = 500
+SIZE = 500
+#WIDTH = (SIZE) = 500
+#HEIGHT = (SIZE) = 500
 
-p = [[250,250]]
+pos = Array.new
+pos.push([250,250])
 
 c = 0
-while c < 5000
-	case rand(4)
-	when 0 then
-		pos_x = p[-1][0] + 10
-		pos_y = p[-1][1]
-	when 1 then
-		pos_x = p[-1][0] - 10
-		pos_y = p[-1][1]
-	when 2 then
-		pos_x = p[-1][0]
-		pos_y = p[-1][1] + 10
+err = 0
+while c < 10000 && err < 10000
+	dice = [-2,-1,1,2].sample
+	if dice.abs == 1
+		pos_x = pos[-1][0] + dice * 10
+		pos_y = pos[-1][1]
 	else
-		pos_x = p[-1][0]
-		pos_y = p[-1][1] - 10
+		pos_x = pos[-1][0]
+		pos_y = pos[-1][1] + dice * 5
 	end
-	if p.include?([pos_x, pos_y])
-		p.pop
-	end
-	if (pos_x >= 0 && pos_x <= WIDTH) && (pos_y >= 0 && pos_y <= HEIGHT) && !(p.include?([pos_x, pos_y]))
-		p.push([pos_x, pos_y])
+	pos_new = [pos_x, pos_y]
+	if pos.include?(pos_new)
+		pos.pop
+		err = err + 1
+	elsif pos_new.all?{|elm| elm>=0 && elm<=SIZE}
+		pos.push(pos_new)
 		c = c + 1
-	end
-	if p.include?([p[-1][0] + 10, p[-1][1]]) && p.include?([p[-1][0] - 10, p[-1][1]]) && p.include?([p[-1][0], p[-1][1] + 10]) && p.include?([p[-1][0], p[-1][1] - 10])
-		break
 	end
 end
 
-p.each do |elm|
+pos.each do |elm|
 	puts elm.join(",")
 end
