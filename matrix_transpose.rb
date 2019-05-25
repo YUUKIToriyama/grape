@@ -1,31 +1,39 @@
 #!/usr/bin/ruby
 # n行m列の長方行列の転置
 
-vct_1 = [1,2,3,"a","i","u"]
-vct_2 = [4,5,6,"A","I","U"]
-vct_3 = [7,8,9,"あ","い","う"]
+# 行列の例
+vct_1 = [1,2,3,4,5,6]
+vct_2 = ["A", "KA", "SA", "TA", "NA"]
+vct_3 = ["q","w","e", "r", "t", "y"]
 
 mtrx = [vct_1, vct_2, vct_3]
 
-# 行列の例
-mtrx.each do |row|
-	puts row.join("\t")
-end
 
 # 行列の転置
-mtrx_new = Array.new
-
-for i in 1..mtrx[0].length
-	tmp_arr = Array.new
-	for l in 1..mtrx.length
-		tmp_arr.push(mtrx[l-1][i-1])
+class Array
+	def transpose_new
+		mtrx = []
+		for i in 1..self.map{|row| row.length}.max
+			arr = []
+			for j in 1..self.length
+				if self[j-1][i-1] == nil
+					arr.push("")
+				else
+					arr.push(self[j-1][i-1])
+				end
+			end
+			mtrx.push(arr)
+		end
+		return mtrx
 	end
-	mtrx_new.push(tmp_arr)	
+	def matrix_print
+		self.each do |row|
+			puts row.join("\t")
+		end
+	end
 end
 
-
-
+# 行列の例
+mtrx.matrix_print
 # 転置した行列を表示
-mtrx_new.each do |row|
-	puts row.join("\t")
-end
+mtrx.transpose_new.matrix_print
