@@ -2,7 +2,7 @@
 
 class Array
 	def life_game
-		tmp = self
+		tmp = Marshal.load(Marshal.dump(self))
 		for i in 1..self.length
 			for m in 1..self[0].length
 				tmp[i-1][m-1] = evaluate_cell(self, i-1, m-1)
@@ -19,7 +19,7 @@ def evaluate_cell(arr,x,y)
 	    + arr[(x-1) % h][(y+1) % w] + arr[x % h][(y+1) % w] + arr[(x+1) % h][(y+1) % w]
 	case arr[x][y]
 	when 1
-		if (sum == 2) || (sum == 3) then
+		if (sum >= 2) && (sum <= 3) then
 			return 1
 		else
 			return 0
@@ -36,8 +36,7 @@ end
 # 実行部
 field = []
 STDIN.map do |line|
-	field.push(line.split(" ").map(&:to_i))
-	puts line
+	field.push(line.chomp.split(" ").map(&:to_i))
 end
 while true
 	field = field.life_game
@@ -46,5 +45,4 @@ while true
 	end
 	puts "-------------------------"
 	sleep 1
-
 end
