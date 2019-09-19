@@ -3,14 +3,10 @@
 
 class Integer
 	def to_binary
-		arr = []
-		n = self
-		while n > 1
-			arr.push(n % 2)
-			n = (n - n % 2) / 2
-		end
-		arr.push(n).reverse
+		a = [self, []]
+		a = [(a[0] - a[0] % 2) / 2, a[1].push(a[0] % 2)] while a[0] > 0
+		return a[1].reverse.join("")
 	end
 end
 
-puts 44.to_binary.join(",")
+puts 44.to_binary
