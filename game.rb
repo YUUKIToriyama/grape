@@ -2,7 +2,7 @@
 # 二次元ルービックキューブ
 
 matrix = [
-	[1, 2, 3],
+	[3, 2, 1],
 	[4, 5, 6],
 	[7, 8, 9]
 ]
@@ -32,29 +32,23 @@ class Array
 	end
 end
 
-def func
-	how_to_play = "How to play\nrotate Row1 2 times, then type 'r 1 2'\nrotate Column3 at once, then type 'c 3 1"
-	puts how_to_play
+matrix.each{|l| puts l.join(" ")}
+how_to_play = "How to play\nrotate Row1 2 times, then type 'r 1 2'\nrotate Column3 at once, then type 'c 3 1"
+puts how_to_play
+
+
+
+while (!matrix.is_correct?)
 	print ":"
 	f,n,m = gets.split(" ")
+	
 	if f == "r"
 		matrix = matrix.horizontal_move(n.to_i, m.to_i)
 	elsif f == "c"
 		matrix = matrix.vertical_move(n.to_i, m.to_i)
 	else
-		puts "error"
-		func
+		puts "ERROR: invalid value"
 	end
 	matrix.each{|l| puts l.join(" ")}
+
 end
-
-while (!matrix.is_correct?)
-	func
-end
-
-matrix.each{|l| puts l.join(" ")}
-puts "---"
-matrix.horizontal_move(1,1).each{|l| puts l.join(" ")}
-puts "---"
-matrix.vertical_move(1,1).each{|l| puts l.join(" ")}
-
