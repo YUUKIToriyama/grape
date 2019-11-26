@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# 二次元ルービックキューブ
 
 matrix = [
 	[1, 2, 3],
@@ -21,7 +22,34 @@ class Array
 		end
 		return tmp
 	end
-	
+	def is_correct?
+		correct_ans = [
+			[1, 2, 3],
+			[4, 5, 6],
+			[7, 8, 9]
+		]
+		return (self == correct_ans) ? true : false
+	end
+end
+
+def func
+	how_to_play = "How to play\nrotate Row1 2 times, then type 'r 1 2'\nrotate Column3 at once, then type 'c 3 1"
+	puts how_to_play
+	print ":"
+	f,n,m = gets.split(" ")
+	if f == "r"
+		matrix = matrix.horizontal_move(n.to_i, m.to_i)
+	elsif f == "c"
+		matrix = matrix.vertical_move(n.to_i, m.to_i)
+	else
+		puts "error"
+		func
+	end
+	matrix.each{|l| puts l.join(" ")}
+end
+
+while (!matrix.is_correct?)
+	func
 end
 
 matrix.each{|l| puts l.join(" ")}
