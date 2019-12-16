@@ -26,3 +26,22 @@ class String
 		return step_1([].push(self)).map {|item| step_2([].push(item))}.flatten
 	end
 end
+
+#あるいはこんな方法もある(かつて使っていた方法)
+class String
+        def split_particle(n)
+                arr = []
+                for i in 0..(self.length - n)
+                        arr.push(self[i..i+n-1])
+                end
+                return arr
+        end
+        def to_ngram_arr
+                arr = []
+                for i in 1..self.length
+                        arr << self.split_particle(i)
+                end
+                return arr.flatten
+        end
+
+end
