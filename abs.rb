@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 class Numeric
-	def func_abs
+	def to_abs
 		if self >= 0
 			return self
 		else
@@ -10,4 +10,5 @@ class Numeric
 	end
 end
 
+puts -1.to_abs
 # self.to_s.delete("-").to_f
